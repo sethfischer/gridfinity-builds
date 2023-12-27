@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "gridfinity-builds"
+version = "0.1.0"
+description = "Gridfinity builds"
+authors = ["Seth Fischer <seth@fischer.nz>"]
+license = "MIT"
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+cadquery = "^2.3.1"
+cadquery-ocp = "7.7.0"
+casadi = {version = "^3.5.6rc2", allow-prereleases = true}
+
+cqgridfinity = "^0.3.0"
+invoke = "^2.2.0"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.12.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
