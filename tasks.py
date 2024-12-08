@@ -44,3 +44,16 @@ def box_1_1_1(c):
         f"gridfinitybox {length} {width} {height} "
         f"--output {output('box', length=length, width=width, height=height)}"
     )
+
+
+@task(pre=[mkdir_build])
+def box_1_1_6(c):
+    """Basic box 1U×1U×6U."""
+    length = 1
+    width = 1
+    height = 6
+
+    c.run(
+        f"gridfinitybox {length} {width} {height} "
+        f"--output {output('box', length=length, width=width, height=height)}"
+    )
