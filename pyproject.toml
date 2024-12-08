@@ -9,9 +9,10 @@ readme = "README.rst"
 [tool.poetry.dependencies]
 python = "^3.11"
 
-cadquery = "^2.3.1"
+cadquery = "2.4.0"
 cadquery-ocp = "7.7.0"
 casadi = {version = "^3.5.6rc2", allow-prereleases = true}
+numpy = "^1.26.4"  # https://github.com/CadQuery/cadquery/issues/1616
 
 cqgridfinity = "^0.5.7"
 invoke = "^2.2.0"
