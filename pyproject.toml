@@ -5,12 +5,13 @@ description = "Gridfinity builds"
 authors = ["Seth Fischer <seth@fischer.nz>"]
 license = "MIT"
 readme = "README.rst"
+package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 
 cadquery = "2.4.0"
-cadquery-ocp = "7.7.0"
+cadquery-ocp = "7.7.2"
 casadi = {version = "^3.5.6rc2", allow-prereleases = true}
 numpy = "^1.26.4"  # https://github.com/CadQuery/cadquery/issues/1616
 

@@ -10,7 +10,7 @@ Install
 
 .. code-block:: text
 
-    poetry env use python3.11
+    poetry env use python3.12
     poetry install
 
 
