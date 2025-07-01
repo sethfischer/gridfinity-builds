@@ -1,7 +1,6 @@
 """Record of Gridfinity builds."""
 
 import os
-import tempfile
 from pathlib import Path
 
 from invoke import task
