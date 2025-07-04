@@ -74,3 +74,21 @@ def baseplate_7_5(c):
         f"--format STEP "
         f"--output {output('baseplate', length=length, width=width)}"
     )
+
+
+@task(pre=[mkdir_build])
+def drawer_spacer_tab(c):
+    """Drawer spacer for Europlan TAB Pedestal Drawers."""
+    slug = "drawer-spacer-tab"
+
+    dr_width = 325
+    dr_depth = 448
+    chamf_rad = 1.0
+
+    from cqgridfinity import GridfinityDrawerSpacer
+
+    spacers = GridfinityDrawerSpacer(
+        dr_width, dr_depth, verbose=True, show_arrows=False, chamf_rad=chamf_rad
+    )
+    spacers.render_half_set()
+    spacers.save_step_file(output(slug, length=dr_width, width=dr_depth).as_posix())
