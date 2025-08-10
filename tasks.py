@@ -79,6 +79,21 @@ def box_2_4_9(c):
 
 
 @task(pre=[mkdir_build])
+def box_2_3_9(c):
+    """Basic box 2U×3U×9U."""
+    length = 2
+    width = 3
+    height = 9
+    wall = 2.5
+
+    c.run(
+        f"gridfinitybox {length} {width} {height} "
+        f"--wall={wall} "
+        f"--output {output('box', length=length, width=width, height=height)}"
+    )
+
+
+@task(pre=[mkdir_build])
 def baseplate_7_5(c):
     """Simple baseplate 7U×5U."""
     length = 7
