@@ -122,6 +122,29 @@ def baseplate_7_5(c):
 
 
 @task(pre=[mkdir_build])
+def wiha_400_10(c):
+    """Wiha 400 10 magnetizer.
+
+    Manufacturer: Wiha
+    Model: 40010
+    Product page: https://www.wihatools.com/products/magnetizer-and-demagnetizer
+    """
+    from custom.wiha import Wiha40010Horizontal
+
+    slug = "wiha-400-10"
+
+    gf_module = Wiha40010Horizontal()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=Wiha40010Horizontal.LENGTH_U,
+            width=Wiha40010Horizontal.WIDTH_U,
+            height=Wiha40010Horizontal.HEIGHT_U,
+        )
+    )
+
+
+@task(pre=[mkdir_build])
 def drawer_spacer_tab(c):
     """Drawer spacer for Europlan TAB Pedestal Drawers."""
     slug = "drawer-spacer-tab"
