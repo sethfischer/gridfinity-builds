@@ -15,6 +15,7 @@ cadquery-ocp = "7.7.2"
 
 cqgridfinity = "^0.5.7"
 invoke = "^2.2.0"
+isort = "^6.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
