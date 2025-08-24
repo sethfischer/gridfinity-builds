@@ -121,6 +121,26 @@ class Wiha40010(CqWorkplaneContainer):
             + negative_aperture_to_edge
         )
 
+        finger_hole_depth = (solid_ratio * box.int_height) + floor_thickness
+
+        finger_cutout = (
+            cq.Workplane()
+            .cylinder(
+                finger_hole_depth,
+                finger_hole_radius,
+                centered=(True, True, False),  # lower face located on workplane
+            )
+            .edges("<Z")
+            .fillet(finger_hole_radius)
+        )
+
+        finger_cutout_section_removed = cq.Workplane("XZ").box(
+            24, finger_hole_depth, 12, centered=(True, False, False)
+        )
+
+        half_finger_cutout = finger_cutout - finger_cutout_section_removed
+        half_finger_cutout = half_finger_cutout.clean()
+
         cutout = (
             cutout.faces("<Z")
             .workplane()
@@ -134,33 +154,25 @@ class Wiha40010(CqWorkplaneContainer):
             .cutBlind(-orientation_indicator_height)
         )
 
-        # finger hole locations
-        finger_hole_locs = [
-            (0, (tool_width / 2) + (clearance / 2)),
-            (0, -(tool_width / 2) - (clearance / 2)),
-            ((tool_length / 2) + (clearance / 2), 0),
-            (-(tool_length / 2) - (clearance / 2), 0),
-        ]
-
-        # finger holes
-        finger_holes = (
-            cq.Workplane(
-                origin=(
-                    0,
-                    0,
-                    GR_BASE_HEIGHT + floor_thickness  + orientation_indicator_height,
-                )
-            )
-            .pushPoints(finger_hole_locs)
-            .cylinder(
-                (solid_ratio * box.int_height) + floor_thickness,
-                finger_hole_radius,
-                centered=(True, True, False),  # lower face located on workplane
-            )
-            .edges("<Z")
-            .fillet(finger_hole_radius)
+        # positive Y-axis finger cutout
+        cutout = cutout + half_finger_cutout.translate(
+            (0, (tool_width + clearance) / 2, GR_BASE_HEIGHT + floor_thickness)
+        )
+        # negative Y-axis finger cutout
+        cutout = cutout + half_finger_cutout.rotate(
+            (0, 0, 0), (0, 0, 1), 180
+        ).translate(
+            (0, -(tool_width + clearance) / 2, GR_BASE_HEIGHT + floor_thickness)
+        )
+        # positive X-axis finger cutout
+        cutout = cutout + half_finger_cutout.rotate(
+            (0, 0, 0), (0, 0, 1), -90
+        ).translate(((tool_width - clearance) / 2, 0, GR_BASE_HEIGHT + floor_thickness))
+        # negative X-axis finger cutout
+        cutout = cutout + half_finger_cutout.rotate((0, 0, 0), (0, 0, 1), 90).translate(
+            (-(tool_width - clearance) / 2, 0, GR_BASE_HEIGHT + floor_thickness)
         )
 
-        part = box.cq_obj - finger_holes - cutout
+        part = box.cq_obj - cutout
 
         return part
