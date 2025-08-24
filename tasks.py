@@ -129,17 +129,17 @@ def wiha_400_10(c):
     Model: 40010
     Product page: https://www.wihatools.com/products/magnetizer-and-demagnetizer
     """
-    from custom.wiha import Wiha40010
+    from custom.wiha import Wiha40010Horizontal
 
     slug = "wiha-400-10"
 
-    gf_module = Wiha40010()
+    gf_module = Wiha40010Horizontal()
     gf_module.save_step_file(
         output(
             slug,
-            length=Wiha40010.LENGTH_U,
-            width=Wiha40010.WIDTH_U,
-            height=Wiha40010.HEIGHT_U,
+            length=Wiha40010Horizontal.LENGTH_U,
+            width=Wiha40010Horizontal.WIDTH_U,
+            height=Wiha40010Horizontal.HEIGHT_U,
         )
     )
 

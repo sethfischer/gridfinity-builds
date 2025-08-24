@@ -6,7 +6,7 @@ from cqgridfinity import GR_BASE_HEIGHT, GridfinityBox
 from .cq_containers import CqWorkplaneContainer
 
 
-class Wiha40010(CqWorkplaneContainer):
+class Wiha40010Horizontal(CqWorkplaneContainer):
     """Wiha 400 10 magnetizer."""
 
     # Gridfinity box size
@@ -27,25 +27,29 @@ class Wiha40010(CqWorkplaneContainer):
         tool_width = 52
         tool_height = 29
 
-        solid_ratio = 0.55
+        pos_aperture_to_edge = 9.5
+        pos_aperture_height = 14
+        pos_aperture_width = 27
+
+        neg_aperture_to_edge = 2
+        neg_aperture_height = 13.5
+        neg_aperture_width = 29.5
+        neg_aperture_offset = 2
+        neg_aperture_step_0_width = 17
+        neg_aperture_step = 3
+
         clearance = 1.5  # cutout clearance
+        tool_cutout_length = tool_length + clearance
+        tool_cutout_width = tool_width + clearance
+        finger_cutout_radius = 12
+
+        solid_ratio = 0.55
         floor_thickness = 5
-        finger_hole_radius = 12
 
-        orientation_indicator_height = 2
+        floor_elevation = GR_BASE_HEIGHT + floor_thickness
+        aperture_indicator_elevation = 2
 
-        positive_aperture_to_edge = 9.5
-        positive_aperture_height = 14
-        positive_aperture_width = 27
-
-        negative_aperture_to_edge = 2
-        negative_aperture_height = 13.5
-        negative_aperture_width = 29.5
-        negative_aperture_offset = 2
-        negative_aperture_step_0_width = 17
-        negative_aperture_step = 3
-
-        box = GridfinityBox(
+        gf_box = GridfinityBox(
             self.LENGTH_U,
             self.WIDTH_U,
             self.HEIGHT_U,
@@ -55,124 +59,117 @@ class Wiha40010(CqWorkplaneContainer):
         )
 
         # cutout representing Wiha 400 10
-        cutout = cq.Workplane(cq.Vector(0, 0, GR_BASE_HEIGHT + floor_thickness)).box(
-            tool_length + clearance,
-            tool_width + clearance,
+        cutout = cq.Workplane(cq.Vector(0, 0, floor_elevation)).box(
+            tool_cutout_length,
+            tool_cutout_width,
             tool_height,
             centered=(True, True, False),  # lower face located on workplane
         )
 
         # positive aperture orientation indicator
-        positive_orientation_sketch = (
+        pos_aperture_sketch = (
             cq.Sketch()
             .rect(
-                positive_aperture_height - clearance,
-                positive_aperture_width - clearance,
+                pos_aperture_height - clearance,
+                pos_aperture_width - clearance,
             )
             .vertices()
             .fillet(1)
         )
 
         positive_orientation_indicator_loc_x = (
-            (tool_length / 2)
-            - (positive_aperture_height / 2)
-            - positive_aperture_to_edge
-        )
-
-        step_1_height = negative_aperture_width - negative_aperture_step_0_width
-        step_2_height = step_1_height - negative_aperture_step
-        step_3_height = step_2_height - negative_aperture_step
-
-        step_1_loc = (
-            ((negative_aperture_height - clearance) / 2) - (negative_aperture_step / 2),
-            -((negative_aperture_width - clearance) / 2) + (step_1_height / 2),
-        )
-        step_2_loc = (
-            step_1_loc[0] - negative_aperture_step,
-            step_1_loc[1] - negative_aperture_step,
-        )
-        step_3_loc = (
-            step_2_loc[0] - negative_aperture_step,
-            step_2_loc[1] - negative_aperture_step,
+            (tool_length / 2) - (pos_aperture_height / 2) - pos_aperture_to_edge
         )
 
         # negative aperture orientation indicator
-        negative_orientation_sketch = (
+        step_1_height = neg_aperture_width - neg_aperture_step_0_width
+        step_2_height = step_1_height - neg_aperture_step
+        step_3_height = step_2_height - neg_aperture_step
+
+        step_1_loc = (
+            ((neg_aperture_height - clearance) / 2) - (neg_aperture_step / 2),
+            -((neg_aperture_width - clearance) / 2) + (step_1_height / 2),
+        )
+        step_2_loc = (
+            step_1_loc[0] - neg_aperture_step,
+            step_1_loc[1] - neg_aperture_step,
+        )
+        step_3_loc = (
+            step_2_loc[0] - neg_aperture_step,
+            step_2_loc[1] - neg_aperture_step,
+        )
+
+        neg_aperture_sketch = (
             cq.Sketch()
             .rect(  # bounding box of negative aperture
-                negative_aperture_height - clearance,
-                negative_aperture_width - clearance,
+                neg_aperture_height - clearance,
+                neg_aperture_width - clearance,
             )
             .push([step_1_loc])  # step 1
-            .rect(negative_aperture_step, step_1_height, mode="s")
+            .rect(neg_aperture_step, step_1_height, mode="s")
             .push([step_2_loc])  # step 2
-            .rect(negative_aperture_step, step_2_height, mode="s")
+            .rect(neg_aperture_step, step_2_height, mode="s")
             .push([step_3_loc])  # step 3
-            .rect(negative_aperture_step, step_3_height, mode="s")
+            .rect(neg_aperture_step, step_3_height, mode="s")
             .clean()
             .reset()
             .vertices()
             .fillet(1)
         )
 
-        negative_orientation_indicator_loc_x = (
-            -(tool_length / 2)
-            + (negative_aperture_height / 2)
-            + negative_aperture_to_edge
+        neg_aperture_loc_x = (
+            -(tool_length / 2) + (neg_aperture_height / 2) + neg_aperture_to_edge
         )
 
-        finger_hole_depth = (solid_ratio * box.int_height) + floor_thickness
-
-        finger_cutout = (
+        # finger cutout
+        finger_cutout_depth = gf_box.top_ref_height
+        finger_cutout_minuend = (
             cq.Workplane()
             .cylinder(
-                finger_hole_depth,
-                finger_hole_radius,
+                finger_cutout_depth,
+                finger_cutout_radius,
                 centered=(True, True, False),  # lower face located on workplane
             )
             .edges("<Z")
-            .fillet(finger_hole_radius)
+            .fillet(finger_cutout_radius)
         )
-
-        finger_cutout_section_removed = cq.Workplane("XZ").box(
-            24, finger_hole_depth, 12, centered=(True, False, False)
+        # finger cutout is a half cylinder
+        finger_cutout_subtrahend = cq.Workplane("XZ").box(
+            24, finger_cutout_depth, 12, centered=(True, False, False)
         )
-
-        half_finger_cutout = finger_cutout - finger_cutout_section_removed
-        half_finger_cutout = half_finger_cutout.clean()
+        finger_cutout = finger_cutout_minuend - finger_cutout_subtrahend
+        finger_cutout = finger_cutout.clean()
 
         cutout = (
             cutout.faces("<Z")
             .workplane()
-            .tag("wp_orientation_indicators")
+            .tag("workplane_orientation_indicators")
             .center(positive_orientation_indicator_loc_x, 0)
-            .placeSketch(positive_orientation_sketch)
-            .cutBlind(-orientation_indicator_height)
-            .workplaneFromTagged("wp_orientation_indicators")
-            .center(negative_orientation_indicator_loc_x, -negative_aperture_offset / 2)
-            .placeSketch(negative_orientation_sketch)
-            .cutBlind(-orientation_indicator_height)
+            .placeSketch(pos_aperture_sketch)
+            .cutBlind(-aperture_indicator_elevation)
+            .workplaneFromTagged("workplane_orientation_indicators")
+            .center(neg_aperture_loc_x, -neg_aperture_offset / 2)
+            .placeSketch(neg_aperture_sketch)
+            .cutBlind(-aperture_indicator_elevation)
         )
 
         # positive Y-axis finger cutout
-        cutout = cutout + half_finger_cutout.translate(
-            (0, (tool_width + clearance) / 2, GR_BASE_HEIGHT + floor_thickness)
+        cutout = cutout + finger_cutout.translate(
+            (0, tool_cutout_width / 2, floor_elevation)
         )
         # negative Y-axis finger cutout
-        cutout = cutout + half_finger_cutout.rotate(
-            (0, 0, 0), (0, 0, 1), 180
-        ).translate(
-            (0, -(tool_width + clearance) / 2, GR_BASE_HEIGHT + floor_thickness)
+        cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), 180).translate(
+            (0, -tool_cutout_width / 2, floor_elevation)
         )
         # positive X-axis finger cutout
-        cutout = cutout + half_finger_cutout.rotate(
-            (0, 0, 0), (0, 0, 1), -90
-        ).translate(((tool_width - clearance) / 2, 0, GR_BASE_HEIGHT + floor_thickness))
+        cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), -90).translate(
+            ((tool_width - clearance) / 2, 0, floor_elevation)
+        )
         # negative X-axis finger cutout
-        cutout = cutout + half_finger_cutout.rotate((0, 0, 0), (0, 0, 1), 90).translate(
-            (-(tool_width - clearance) / 2, 0, GR_BASE_HEIGHT + floor_thickness)
+        cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), 90).translate(
+            (-(tool_width - clearance) / 2, 0, floor_elevation)
         )
 
-        part = box.cq_obj - cutout
+        part = gf_box.cq_obj - cutout
 
         return part
