@@ -145,6 +145,24 @@ def wiha_400_10(c):
 
 
 @task(pre=[mkdir_build])
+def eye_loupe_40(c):
+    """Eye loupe."""
+    from custom.eye_loupe import EyeLoupe40
+
+    slug = "eye-loupe-40"
+
+    gf_module = EyeLoupe40()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=EyeLoupe40.LENGTH_U,
+            width=EyeLoupe40.WIDTH_U,
+            height=EyeLoupe40.HEIGHT_U,
+        )
+    )
+
+
+@task(pre=[mkdir_build])
 def drawer_spacer_tab(c):
     """Drawer spacer for Europlan TAB Pedestal Drawers."""
     slug = "drawer-spacer-tab"
