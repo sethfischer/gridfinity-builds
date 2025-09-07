@@ -19,8 +19,6 @@ class EyeLoupe40(CqWorkplaneContainer):
     WIDTH_U = 1
     HEIGHT_U = 6
 
-    _cq_object: cq.Workplane
-
     def __init__(self):
         """Initialize Eye loupe."""
         self._cq_object = self._make()

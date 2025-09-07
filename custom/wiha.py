@@ -14,8 +14,6 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
     WIDTH_U = 2
     HEIGHT_U = 6
 
-    _cq_object: cq.Workplane
-
     def __init__(self):
         """Initialize Wiha40010."""
         self._cq_object = self._make()
