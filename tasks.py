@@ -10,7 +10,7 @@ BUILD_DIR = "_build"
 
 def output(slug: str, length: float, width: float, height: float = None) -> Path:
     """Generate output pathname."""
-    filename = f"{slug}_{length}x{width}"
+    filename = f"gf_{slug}_{length}x{width}"
 
     if height:
         filename += f"x{height}"
