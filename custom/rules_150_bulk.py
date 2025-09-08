@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
 
-from .constants import MAX_WALL_THICKNESS
+from .constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
 from .cq_containers import CqWorkplaneContainer
 
 
@@ -21,7 +21,6 @@ class Rules150Bulk(CqWorkplaneContainer):
 
     def _make(self) -> cq.Workplane:
         """Make 150 mm rules Gridfinity module."""
-        finger_cutout_radius = 12
         finger_cutout_wall_height = 5
 
         gf_box = GridfinityBox(
@@ -44,7 +43,7 @@ class Rules150Bulk(CqWorkplaneContainer):
                 centered=(True, True, False),
             )
             .edges("(>X and <Z) or (<X and <Z)")
-            .fillet(finger_cutout_radius)
+            .fillet(FINGER_CUTOUT_DIAMETER / 2)
         )
 
         part = gf_box.cq_obj - finger_cutout
