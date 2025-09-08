@@ -5,6 +5,8 @@ from pathlib import Path
 
 from invoke import task
 
+from custom.constants import MAX_WALL_THICKNESS
+
 BUILD_DIR = "_build"
 
 
@@ -69,11 +71,10 @@ def box_1_3_9(c):
     length = 1
     width = 3
     height = 9
-    wall = 2.5
 
     c.run(
         f"gridfinitybox {length} {width} {height} "
-        f"--wall={wall} "
+        f"--wall={MAX_WALL_THICKNESS} "
         f"--output {output('box', length=length, width=width, height=height)}"
     )
 
@@ -84,11 +85,10 @@ def box_2_4_9(c):
     length = 2
     width = 4
     height = 9
-    wall = 2.5
 
     c.run(
         f"gridfinitybox {length} {width} {height} "
-        f"--wall={wall} "
+        f"--wall={MAX_WALL_THICKNESS} "
         f"--output {output('box', length=length, width=width, height=height)}"
     )
 
@@ -99,11 +99,10 @@ def box_2_3_9(c):
     length = 2
     width = 3
     height = 9
-    wall = 2.5
 
     c.run(
         f"gridfinitybox {length} {width} {height} "
-        f"--wall={wall} "
+        f"--wall={MAX_WALL_THICKNESS} "
         f"--output {output('box', length=length, width=width, height=height)}"
     )
 

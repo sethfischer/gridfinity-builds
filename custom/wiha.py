@@ -3,6 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GridfinityBox
 
+from .constants import MAX_WALL_THICKNESS
 from .cq_containers import CqWorkplaneContainer
 
 
@@ -53,7 +54,7 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
             self.HEIGHT_U,
             solid=True,
             solid_ratio=solid_ratio,
-            wall_th=2.5,
+            wall_th=MAX_WALL_THICKNESS,
         )
 
         # cutout representing Wiha 400 10
