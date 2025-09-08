@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
 
-from .constants import TINY_LENGTH
+from .constants import FINGER_CUTOUT_DIAMETER, TINY_LENGTH
 from .cq_containers import CqWorkplaneContainer
 
 
@@ -31,7 +31,6 @@ class EyeLoupe40(CqWorkplaneContainer):
 
         diameter_clearance = 0.5
         height_clearance = 3  # distance between object and stacked bin
-        cutout_diameter = 24
         cutout_fillet = 6
         shadow_diameter = 34
         shadow_height = 2
@@ -53,7 +52,7 @@ class EyeLoupe40(CqWorkplaneContainer):
         finger_cutout = (
             cq.Workplane("XY")
             .workplane(offset=offset)
-            .rect(GRU + (cutout_fillet * 2), cutout_diameter)
+            .rect(GRU + (cutout_fillet * 2), FINGER_CUTOUT_DIAMETER)
             .extrude(cutout_height)
             .edges("<Z")
             .fillet(cutout_fillet)
