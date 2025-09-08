@@ -3,6 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
 
+from .constants import MAX_WALL_THICKNESS
 from .cq_containers import CqWorkplaneContainer
 
 
@@ -27,7 +28,7 @@ class Rules150Bulk(CqWorkplaneContainer):
             self.LENGTH_U,
             self.WIDTH_U,
             self.HEIGHT_U,
-            wall_th=2.5,
+            wall_th=MAX_WALL_THICKNESS,
             width_div=3,
         )
 
