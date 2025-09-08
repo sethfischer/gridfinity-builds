@@ -66,10 +66,10 @@ def box_1_1_6(c):
 
 
 @task(pre=[mkdir_build])
-def box_1_3_9(c):
-    """Basic box 1U×3U×9U."""
-    length = 1
-    width = 3
+def box_3_1_9(c):
+    """Basic box 3U×1U×9U."""
+    length = 3
+    width = 1
     height = 9
 
     c.run(
@@ -80,10 +80,10 @@ def box_1_3_9(c):
 
 
 @task(pre=[mkdir_build])
-def box_2_4_9(c):
-    """Basic box 2U×4U×9U."""
-    length = 2
-    width = 4
+def box_3_2_9(c):
+    """Basic box 3U×2U×9U."""
+    length = 3
+    width = 2
     height = 9
 
     c.run(
@@ -94,10 +94,10 @@ def box_2_4_9(c):
 
 
 @task(pre=[mkdir_build])
-def box_2_3_9(c):
-    """Basic box 2U×3U×9U."""
-    length = 2
-    width = 3
+def box_4_2_9(c):
+    """Basic box 4U×2U×9U."""
+    length = 4
+    width = 2
     height = 9
 
     c.run(
