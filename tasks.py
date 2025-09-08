@@ -163,6 +163,24 @@ def eye_loupe_40(c):
 
 
 @task(pre=[mkdir_build])
+def rules_150_bulk(c):
+    """Bulk 150 mm rules."""
+    from custom.rules_150_bulk import Rules150Bulk
+
+    slug = "rules-150-bulk"
+
+    gf_module = Rules150Bulk()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=Rules150Bulk.LENGTH_U,
+            width=Rules150Bulk.WIDTH_U,
+            height=Rules150Bulk.HEIGHT_U,
+        )
+    )
+
+
+@task(pre=[mkdir_build])
 def drawer_spacer_tab(c):
     """Drawer spacer for Europlan TAB Pedestal Drawers."""
     slug = "drawer-spacer-tab"
