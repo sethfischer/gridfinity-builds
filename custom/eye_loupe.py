@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
 
-from .constants import FINGER_CUTOUT_DIAMETER, TINY_LENGTH
+from .constants import CUTOUT_FILLET_RADIUS, FINGER_CUTOUT_DIAMETER, TINY_LENGTH
 from .cq_containers import CqWorkplaneContainer
 
 
@@ -55,7 +55,7 @@ class EyeLoupe40(CqWorkplaneContainer):
             .rect(GRU + (cutout_fillet * 2), FINGER_CUTOUT_DIAMETER)
             .extrude(cutout_height)
             .edges("<Z")
-            .fillet(cutout_fillet)
+            .fillet(CUTOUT_FILLET_RADIUS)
         )
 
         cutout = (
