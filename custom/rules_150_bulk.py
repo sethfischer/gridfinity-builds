@@ -1,7 +1,7 @@
 """Bulk 150 mm rules Gridfinity module."""
 
 import cadquery as cq
-from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
+from cqgridfinity import GR_BOT_H, GridfinityBox
 
 from .constants import CUTOUT_FILLET_RADIUS, MAX_WALL_THICKNESS
 from .cq_containers import CqWorkplaneContainer
@@ -21,6 +21,7 @@ class Rules150Bulk(CqWorkplaneContainer):
 
     def _make(self) -> cq.Workplane:
         """Make 150 mm rules Gridfinity module."""
+        shortest_rule_length = 150
         finger_cutout_wall_height = 5
 
         gf_box = GridfinityBox(
@@ -31,8 +32,9 @@ class Rules150Bulk(CqWorkplaneContainer):
             width_div=3,
         )
 
-        finger_cutout_length = (self.LENGTH_U - 2) * GRU
-        finger_cutout_elevation = GR_BASE_HEIGHT + finger_cutout_wall_height
+        stackable_inner_length = gf_box.inner_l - shortest_rule_length + 5
+        finger_cutout_length = gf_box.inner_l - (2 * stackable_inner_length)
+        finger_cutout_elevation = GR_BOT_H + finger_cutout_wall_height
         finger_cutout_height = gf_box.height - finger_cutout_elevation
         finger_cutout = (
             cq.Workplane(origin=(0, 0, finger_cutout_elevation))
