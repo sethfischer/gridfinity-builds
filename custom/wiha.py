@@ -44,7 +44,7 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
         solid_ratio = 0.55
         floor_thickness = 5
 
-        floor_elevation = GR_BASE_HEIGHT + floor_thickness
+        cutout_floor_elevation = GR_BASE_HEIGHT + floor_thickness
         aperture_indicator_elevation = 2
 
         gf_box = GridfinityBox(
@@ -57,7 +57,7 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
         )
 
         # cutout representing Wiha 400 10
-        cutout = cq.Workplane(cq.Vector(0, 0, floor_elevation)).box(
+        cutout = cq.Workplane(cq.Vector(0, 0, cutout_floor_elevation)).box(
             tool_cutout_length,
             tool_cutout_width,
             tool_height,
@@ -156,19 +156,19 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
 
         # positive Y-axis finger cutout
         cutout = cutout + finger_cutout.translate(
-            (0, tool_cutout_width / 2, floor_elevation)
+            (0, tool_cutout_width / 2, cutout_floor_elevation)
         )
         # negative Y-axis finger cutout
         cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), 180).translate(
-            (0, -tool_cutout_width / 2, floor_elevation)
+            (0, -tool_cutout_width / 2, cutout_floor_elevation)
         )
         # positive X-axis finger cutout
         cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), -90).translate(
-            ((tool_width - clearance) / 2, 0, floor_elevation)
+            ((tool_width - clearance) / 2, 0, cutout_floor_elevation)
         )
         # negative X-axis finger cutout
         cutout = cutout + finger_cutout.rotate((0, 0, 0), (0, 0, 1), 90).translate(
-            (-(tool_width - clearance) / 2, 0, floor_elevation)
+            (-(tool_width - clearance) / 2, 0, cutout_floor_elevation)
         )
 
         part = gf_box.cq_obj - cutout

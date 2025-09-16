@@ -45,7 +45,7 @@ class EyeLoupe40(CqWorkplaneContainer):
             solid_ratio=solid_ratio,
         )
 
-        floor_elevation = gf_box.top_ref_height - height - height_clearance
+        cutout_floor_elevation = gf_box.top_ref_height - height - height_clearance
         offset = gf_box.top_ref_height - GR_BASE_HEIGHT - height - height_clearance
         cutout_height = gf_box.height
 
@@ -69,7 +69,7 @@ class EyeLoupe40(CqWorkplaneContainer):
 
         shadow = (
             cq.Workplane()
-            .workplane(offset=floor_elevation)
+            .workplane(offset=cutout_floor_elevation)
             .circle(shadow_diameter / 2)
             .extrude(shadow_height)
             .faces(">Z")
