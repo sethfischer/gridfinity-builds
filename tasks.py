@@ -144,6 +144,24 @@ def wiha_400_10(c):
 
 
 @task(pre=[mkdir_build])
+def empire_emssrs(c):
+    """Empire EMSSRS Stainless Steel Ruler Stop."""
+    from custom.empire_rule_stop import EmpireRuleStopEmssrs
+
+    slug = "empire-emssrs"
+
+    gf_module = EmpireRuleStopEmssrs()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=EmpireRuleStopEmssrs.LENGTH_U,
+            width=EmpireRuleStopEmssrs.WIDTH_U,
+            height=EmpireRuleStopEmssrs.HEIGHT_U,
+        )
+    )
+
+
+@task(pre=[mkdir_build])
 def eye_loupe_40(c):
     """Eye loupe."""
     from custom.eye_loupe import EyeLoupe40
