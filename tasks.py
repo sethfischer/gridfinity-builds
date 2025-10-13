@@ -162,6 +162,24 @@ def empire_emssrs(c):
 
 
 @task(pre=[mkdir_build])
+def mueller_bu27259(c):
+    """Mueller BU-27.259.@ Safety Alligator Clip."""
+    from custom.mueller.crocodile_clips import MuellerBU27259
+
+    slug = "mueller-bu27259"
+
+    gf_module = MuellerBU27259()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=MuellerBU27259.LENGTH_U,
+            width=MuellerBU27259.WIDTH_U,
+            height=MuellerBU27259.HEIGHT_U,
+        )
+    )
+
+
+@task(pre=[mkdir_build])
 def eye_loupe_40(c):
     """Eye loupe."""
     from custom.eye_loupe import EyeLoupe40
