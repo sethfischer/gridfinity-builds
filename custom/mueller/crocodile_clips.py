@@ -3,7 +3,6 @@
 import cadquery as cq
 from cqgridfinity import GridfinityBox
 
-from custom.constants import MAX_WALL_THICKNESS
 from custom.cq_containers import CqWorkplaneContainer
 
 
