@@ -24,10 +24,10 @@ class MuellerBU27259(CqWorkplaneContainer):
     def _make(self) -> cq.Workplane:
         """Make Mueller BU-27.259.@ Gridfinity module."""
         # dimensions
-        diameter = 10
+        diameter = 9.85
         distance_to_push_button = 18
 
-        clearance = 1
+        clearance = 0.5
         solid_ratio = 1
 
         gf_box = GridfinityBox(
