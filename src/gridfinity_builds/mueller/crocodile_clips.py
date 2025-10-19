@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GridfinityBox
 
-from custom.cq_containers import CqWorkplaneContainer
+from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
 class MuellerBU27259(CqWorkplaneContainer):

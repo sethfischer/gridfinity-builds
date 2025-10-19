@@ -2,10 +2,15 @@
 name = "gridfinity-builds"
 version = "0.1.0"
 description = "Gridfinity builds"
+packages = [
+    {include = "gridfinity_builds", from = "src"},
+]
 authors = ["Seth Fischer <seth@fischer.nz>"]
 license = "MIT"
 readme = "README.rst"
-package-mode = false
+classifiers = [
+    "Private :: Do not Upload",  # Prevent uploading to PyPI
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
