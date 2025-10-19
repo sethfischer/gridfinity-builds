@@ -5,7 +5,7 @@ from pathlib import Path
 
 from invoke import task
 
-from custom.constants import MAX_WALL_THICKNESS
+from gridfinity_builds.constants import MAX_WALL_THICKNESS
 
 BUILD_DIR = "_build"
 
@@ -128,7 +128,7 @@ def wiha_400_10(c):
     Model: 40010
     Product page: https://www.wihatools.com/products/magnetizer-and-demagnetizer
     """
-    from custom.wiha import Wiha40010Horizontal
+    from gridfinity_builds.wiha import Wiha40010Horizontal
 
     slug = "wiha-400-10"
 
@@ -146,7 +146,7 @@ def wiha_400_10(c):
 @task(pre=[mkdir_build])
 def empire_emssrs(c):
     """Empire EMSSRS Stainless Steel Ruler Stop."""
-    from custom.empire_rule_stop import EmpireRuleStopEmssrs
+    from gridfinity_builds.empire_rule_stop import EmpireRuleStopEmssrs
 
     slug = "empire-emssrs"
 
@@ -164,7 +164,7 @@ def empire_emssrs(c):
 @task(pre=[mkdir_build])
 def mueller_bu27259(c):
     """Mueller BU-27.259.@ Safety Alligator Clip."""
-    from custom.mueller.crocodile_clips import MuellerBU27259
+    from gridfinity_builds.mueller.crocodile_clips import MuellerBU27259
 
     slug = "mueller-bu27259"
 
@@ -182,7 +182,7 @@ def mueller_bu27259(c):
 @task(pre=[mkdir_build])
 def eye_loupe_40(c):
     """Eye loupe."""
-    from custom.eye_loupe import EyeLoupe40
+    from gridfinity_builds.eye_loupe import EyeLoupe40
 
     slug = "eye-loupe-40"
 
@@ -200,7 +200,7 @@ def eye_loupe_40(c):
 @task(pre=[mkdir_build])
 def rules_150_bulk(c):
     """Bulk 150 mm rules."""
-    from custom.rules_150_bulk import Rules150Bulk
+    from gridfinity_builds.rules_150_bulk import Rules150Bulk
 
     slug = "rules-150-bulk"
 

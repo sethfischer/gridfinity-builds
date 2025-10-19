@@ -19,6 +19,6 @@ Use
 
 .. code-block:: text
 
-    poetry shell
+    eval $(poetry env activate)
     invoke --list
     invoke task1 ... taskN
