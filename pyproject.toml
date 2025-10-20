@@ -12,8 +12,9 @@ classifiers = [
     "Private :: Do not Upload",  # Prevent uploading to PyPI
 ]
 
+
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.12,<3.13"
 
 cadquery = "2.5.2"
 cadquery-ocp = "7.7.2"
@@ -26,9 +27,18 @@ isort = "^6.0.1"
 [tool.poetry.group.dev.dependencies]
 black = "^25.1.0"
 
+
+[tool.poetry.group.cq-editor]
+optional = true
+
+[tool.poetry.group.cq-editor.dependencies]
+cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "1d30210b5b5bc4d60cea8d08f458b48f15d3c057"}
+
+
 [tool.isort]
 profile = "black"
 multi_line_output = 3
+
 
 [build-system]
 requires = ["poetry-core"]
