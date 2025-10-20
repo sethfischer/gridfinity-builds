@@ -1,1 +1,1 @@
-"""Gridfinity for Mueller."""
+"""Gridfinity for Mueller brand items."""

@@ -1,4 +1,4 @@
-"""Mueller Crocodile Clips."""
+"""Mueller BU-27.259.@ Safety Alligator Clip Gridfinity module."""
 
 import cadquery as cq
 from cqgridfinity import GridfinityBox

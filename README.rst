@@ -21,4 +21,4 @@ Use
 
     eval $(poetry env activate)
     invoke --list
-    invoke task1 ... taskN
+    invoke mkdir-build task1 ... taskN

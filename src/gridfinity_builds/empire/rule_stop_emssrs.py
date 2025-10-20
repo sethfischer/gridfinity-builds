@@ -1,10 +1,10 @@
-"""Empire rule stops."""
+"""Empire EMSSRS Stainless Steel Ruler Stop Gridfinity module."""
 
 import cadquery as cq
 from cqgridfinity import GridfinityBox
 
-from .constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
-from .cq_containers import CqWorkplaneContainer
+from gridfinity_builds.constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
+from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
 class EmpireRuleStopEmssrs(CqWorkplaneContainer):
@@ -16,7 +16,7 @@ class EmpireRuleStopEmssrs(CqWorkplaneContainer):
     Product page: https://www.empiretools.co.nz/products/rulers/stainless-steel-ruler-stop
     """
 
-    # Gridfinity box size
+    # Gridfinity size
     LENGTH_U = 2
     WIDTH_U = 1
     HEIGHT_U = 6

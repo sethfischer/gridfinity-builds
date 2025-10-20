@@ -1,16 +1,16 @@
-"""Bulk 150 mm rules Gridfinity module."""
+"""Generic bulk 150 mm rules Gridfinity module."""
 
 import cadquery as cq
 from cqgridfinity import GR_BOT_H, GridfinityBox
 
-from .constants import CUTOUT_FILLET_RADIUS, MAX_WALL_THICKNESS
-from .cq_containers import CqWorkplaneContainer
+from gridfinity_builds.constants import CUTOUT_FILLET_RADIUS, MAX_WALL_THICKNESS
+from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
 class Rules150Bulk(CqWorkplaneContainer):
     """Bulk 150 mm rules Gridfinity module."""
 
-    # Gridfinity box size
+    # Gridfinity size
     LENGTH_U = 5
     WIDTH_U = 1
     HEIGHT_U = 6
