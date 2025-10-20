@@ -1,16 +1,16 @@
-"""Gridfinity for Wiha."""
+"""Wiha 400 10 magnetizer Gridfinity module."""
 
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GridfinityBox
 
-from .constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
-from .cq_containers import CqWorkplaneContainer
+from gridfinity_builds.constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
+from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
 class Wiha40010Horizontal(CqWorkplaneContainer):
     """Wiha 400 10 magnetizer."""
 
-    # Gridfinity box size
+    # Gridfinity size
     LENGTH_U = 2
     WIDTH_U = 2
     HEIGHT_U = 6
@@ -99,7 +99,7 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
 
         neg_aperture_sketch = (
             cq.Sketch()
-            .rect(  # bounding box of negative aperture
+            .rect(  # bounding gridfinity of negative aperture
                 neg_aperture_height - clearance,
                 neg_aperture_width - clearance,
             )

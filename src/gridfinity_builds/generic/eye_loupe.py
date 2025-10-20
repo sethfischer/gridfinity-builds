@@ -1,20 +1,24 @@
-"""Eye loupe Gridfinity module."""
+"""Generic eye loupe Gridfinity module."""
 
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GRU, GridfinityBox
 
-from .constants import CUTOUT_FILLET_RADIUS, FINGER_CUTOUT_DIAMETER, TINY_LENGTH
-from .cq_containers import CqWorkplaneContainer
+from gridfinity_builds.constants import (
+    CUTOUT_FILLET_RADIUS,
+    FINGER_CUTOUT_DIAMETER,
+    TINY_LENGTH,
+)
+from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
 class EyeLoupe40(CqWorkplaneContainer):
-    """Eye loupe.
+    """Eye loupe with diameter = 40mm.
 
     Brand: Unknown
     Markings: 2½ JAPAN
     """
 
-    # Gridfinity box size
+    # Gridfinity size
     LENGTH_U = 1
     WIDTH_U = 1
     HEIGHT_U = 6
