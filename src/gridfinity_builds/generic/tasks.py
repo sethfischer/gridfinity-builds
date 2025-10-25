@@ -39,3 +39,21 @@ def rules_150_bulk(c):
             height=Rules150Bulk.HEIGHT_U,
         )
     )
+
+
+@task
+def rules_300_bulk(c):
+    """Bulk 300 mm rules 2U×1U×6U."""
+    from gridfinity_builds.generic.rules_300_bulk import Rules300Bulk
+
+    slug = "rules-300-bulk"
+
+    gf_module = Rules300Bulk()
+    gf_module.save_step_file(
+        output(
+            slug,
+            length=Rules300Bulk.LENGTH_U,
+            width=Rules300Bulk.WIDTH_U,
+            height=Rules300Bulk.HEIGHT_U,
+        )
+    )

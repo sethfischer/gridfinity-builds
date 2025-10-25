@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import Dict
 
 import cadquery as cq
 from cqkit import export_step_file
@@ -27,11 +28,17 @@ class CqWorkplaneContainer(ABC):
     """Abstract base class for CadQuery Workplane containers."""
 
     _cq_object: cq.Workplane
+    _cq_objects: Dict[str, cq.Workplane]
 
     @property
     def cq_object(self) -> cq.Workplane:
         """Get CadQuery object."""
         return self._cq_object
+
+    @property
+    def cq_objects(self) -> Dict[str, cq.Workplane]:
+        """Get CadQuery object."""
+        return self._cq_objects
 
     def save_step_file(self, filename: Path):
         """Save STEP file."""
