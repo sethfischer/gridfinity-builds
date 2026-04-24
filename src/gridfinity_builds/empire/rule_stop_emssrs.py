@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GridfinityBox
 
-from gridfinity_builds.constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
+from gridfinity_builds.constants import MAX_WALL_THICKNESS, FINGER_CUTOUT_RADIUS
 from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
@@ -72,11 +72,11 @@ class EmpireRuleStopEmssrs(CqWorkplaneContainer):
             cq.Workplane()
             .cylinder(
                 body_width,
-                FINGER_CUTOUT_DIAMETER / 2,
+                FINGER_CUTOUT_RADIUS,
                 centered=(True, True, True),
             )
             .edges("<Z")
-            .fillet(FINGER_CUTOUT_DIAMETER / 2)
+            .fillet(FINGER_CUTOUT_RADIUS)
         )
 
         # positive Y-axis finger cutout

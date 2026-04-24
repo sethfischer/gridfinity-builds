@@ -3,7 +3,7 @@
 import cadquery as cq
 from cqgridfinity import GR_BASE_HEIGHT, GridfinityBox
 
-from gridfinity_builds.constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS
+from gridfinity_builds.constants import FINGER_CUTOUT_DIAMETER, MAX_WALL_THICKNESS, FINGER_CUTOUT_RADIUS
 from gridfinity_builds.cq_containers import CqWorkplaneContainer
 
 
@@ -125,17 +125,17 @@ class Wiha40010Horizontal(CqWorkplaneContainer):
             cq.Workplane()
             .cylinder(
                 finger_cutout_depth,
-                FINGER_CUTOUT_DIAMETER / 2,
+                FINGER_CUTOUT_RADIUS,
                 centered=(True, True, False),  # lower face located on workplane
             )
             .edges("<Z")
-            .fillet(FINGER_CUTOUT_DIAMETER / 2)
+            .fillet(FINGER_CUTOUT_RADIUS)
         )
         # finger cutout is a half cylinder
         finger_cutout_subtrahend = cq.Workplane("XZ").box(
             FINGER_CUTOUT_DIAMETER,
             finger_cutout_depth,
-            FINGER_CUTOUT_DIAMETER / 2,
+            FINGER_CUTOUT_RADIUS,
             centered=(True, False, False),
         )
         finger_cutout = finger_cutout_minuend - finger_cutout_subtrahend
