@@ -32,7 +32,7 @@ black = "^25.1.0"
 optional = true
 
 [tool.poetry.group.cq-editor.dependencies]
-cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "1d30210b5b5bc4d60cea8d08f458b48f15d3c057"}
+cq-editor = {git = "https://github.com/CadQuery/CQ-editor.git", rev = "7a47d0f4ccedbef9e98982769710518c67af339c"}
 
 
 [tool.isort]
